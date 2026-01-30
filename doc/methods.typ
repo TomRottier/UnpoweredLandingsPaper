@@ -1,0 +1,83 @@
+= Methods<sec-methods>
+We opt for a simple model of the dynamics to aid interpretation but one which captures the fundamental physics of landing from flight. The model is presented in non-dimensional form such that it describes landing at any scale. By modelling the key dynamics our model may provide a foundation upon which more complex, species-specific models can be understood. Although our focus is on avian flight, the simplicity of the model allows the results to be relevant to other unpowered flyers.
+
+== Flight dynamics model <sec-methods-dynamics>
+We model the longitudinal dynamics using a point mass acted upon by gravitational and aerodynamic forces. The model neglects rotational dynamics and so assumes ideal control over pitch. For birds this is a fair assumption due to their small pitch moment of inertia @bergMomentInertiaBird1995@harveyBirdsCanTransition2022 and the ability to morph and sweep their wings to modulate pitching moments @harveyGullinspiredJointdrivenWing2021. For a pigeon sized bird, the angle of attack strategies given below only require a shift in the centre of pressure on the order of $1 thin "cm"$, which a bird could easily accomplish through sweeping its wing fore and aft, see @supp-mat-rigidbody.
+
+
+=== Equations of motion <sec-methods-eom>
+Two frames of reference will be used: an inertial, earth-fixed frame {$bold(hat(e)_x) \, bold(hat(e)_y) \, bold(hat(e)_z)$} and a non-inertial, velocity-fixed frame {$bold(hat(e)_v) \, bold(hat(e)_phi.alt) \, bold(hat(e)_gamma)$} (@fig-fbd\A). The velocity-fixed frame is rotated by the flight path angle, $gamma$, anticlockwise from the earth-fixed frame about an axis perpendicular to the longitudinal plane such that $bold(hat(e)_v)$ points in the direction of the velocity of the mass and positive values of $gamma$ represent climbing and negative values represent diving. Gravity acts vertically downwards in the earth-fixed frame ($bold(hat(e)_z)$).
+
+The velocity of the mass can be expressed as: $ bold(v) = v bold(hat(e)_v) $ where $v$ is the relative speed between the mass and the earth. The acceleration in the velocity frame is then given by time differentiation:
+$
+  bold(a) = dot(v) bold(hat(e)_v) + dot(gamma) v bold(hat(e)_gamma)
+$<eq-acceleration>
+with the second term arising due to the changing direction of the frame. Two forces act on the mass: gravity and the net aerodynamic force, which is decomposed into components perpendicular (lift) and parallel (drag), to the velocity vector:
+$
+  bold(F) = m g bold(hat(e)_z) + L bold(hat(e)_gamma) - D bold(hat(e)_v)
+$<eq-force>
+where $m$ is the mass, $g$ is the magnitude of the acceleration due to gravity (taken as $9.81 thin "m" thin "s"^(-2)$ throughout), $L$ the lift, and $D$ the drag. Lift and drag are given by the following equations:
+$
+  L & = 1/2 rho U_infinity^2 S C_L \
+  D & = 1/2 rho U_infinity^2 S C_D
+$
+where $rho$ is the air density (taken at the sea-level value of $1.23 thin "kg" thin "m"^(-3)$ throughout), $U_infinity$ is the local airspeed, $S$ is a reference area, and $C_L, C_D$ are the lift and drag coefficients, respectively. Although not considered here, we separate the local air speed, $U_infinity$ from the speed of the mass, $v$, to allow a wind speed to be included in the future. When there is no wind speed $U_infinity = v$. The lift and drag coefficients are modelled as functions of the angle of attack, $alpha$, which forms the control input to the model.
+
+Equating Equations #ref(<eq-acceleration>, supplement: none) and #ref(<eq-force>, supplement: none) through Newton's second law (for a constant mass) gives the equations of motion for the model:
+$
+      dot(v) & = - frac(1, 2 m) rho S v^2 C_D - g sin gamma \
+  dot(gamma) & = frac(1, 2 m) rho S v C_L - g / v cos gamma
+$<eq-eom>
+
+The model is made non-dimensional through a nominal speed $hat(v)$
+and a nominal time $hat(t)$ to give:
+$
+     dot(nu) & = - C_D nu^2 - sin gamma \
+  dot(gamma) & = C_L nu - (cos gamma) / nu
+$<eq-eom-nondim>
+where $nu$ is the non-dimensional speed and the independent variable is now a non-dimensional time $tau$; angles are given in radians and are therefore non-dimensional. The nominal speed and time are given by $hat(v) = sqrt(frac(2 m g, rho S))$ and $hat(t) = hat(v) / g = sqrt(frac(2 m, g rho S))$ where $hat(v)$ can be thought of as the stall speed for horizontal flight with a $C_L = 1$, or as the terminal speed for vertical descent with $C_D = 1$, and $hat(t)$ as the time taken to accelerate to this speed from rest under gravity.
+
+=== Aerodynamics model <sec-methods-aerodynamics>
+Our focus is on unpowered flight and so we neglect the time varying effects of flapping on the aerodynamics. The lift and drag coefficients are modelled quasi-statically as functions of the instantaneous angle of attack:
+$
+  C_L \( alpha \) & = C_(L"max") sin 2 alpha \
+  C_D \( alpha \) & = C_(D 0) + C_(D"max") sin^2 alpha
+$<eq-clcd>
+
+This model is representative of experimental data over a broad range of angles of attack at Reynolds numbers relevant to birds @usherwoodAerodynamicsRevolvingWings2002a @leishmanPrinciplesHelicopterAerodynamics2017 @nabawyRoleLeadingEdge2017 and has been used in previous models of cruising flight @parslewSimulatingAvianWingbeat2010 and of free-flight data @mooreRobustPoststallPerching2014. Some differences in the coefficients are to be expected across species @leesInfluenceFlightStyle2016 and we address this through variations in the model's parameters in @sec-results-sensitivity.
+
+The model underpredicts $C_L$ and overpredicts $C_D$ for pre-stall angles of attack. However, this simple form remains broadly applicable for the majority of the manoeuvre and requires a minimal number of input parameters, making the problem tractable. The model also neglects unsteady aerodynamic effects, which can cause large, transient increases in $C_L$ and $C_D$ @granlundUnsteadyPitchingFlat2013 @poletUnsteadyDynamicsRapid2015. Modelling unsteady effects vastly increases the model complexity and reduces transparency. Instead, we explore the influence of unsteadiness by artificially scaling the maximum lift and drag coefficients whilst retaining the functional form in @eq-clcd. This captures the trends seen in experimental data on pitching wings reasonably well @stricklandForceCoefficientsNACA00151987, whilst retaining the transparency of the simple model. An initial estimation of unsteady effects can thus be captured by extending our sensitivity analysis to a much wider range of values for $C_(L"max")$ and $C_(D"max")$.
+
+The parameters to be defined are the maximum lift coefficient $C_(L"max")$, the zero-lift drag coefficient $C_(D 0)$, and the maximum drag coefficient $C_(D"max")$. Nominal values used are 1.5, 0.03, and 2.0, respectively, which are representative of bird wings @usherwoodAerodynamicsRevolvingWings2002a @parslewPredictingPoweroptimalKinematics2015. While the aerodynamic effects of the body and tail are not explicitly modelled, the sensitivity analysis varying $C_L$ and $C_D$ will capture the effects of any additional drag that might come from the body and any additional lift and drag that may come from the tail @usherwoodHighAerodynamicLift2020.
+
+=== Numerical simulations <sec-methods-numerical>
+@eq-eom-nondim represents the dynamics of the non-dimensional model. To calculate the trajectories of the model in the earth-fixed frame (@fig-fbd\B), two further differential equations are added to represent its position $x$, $z$ or in equivalent non-dimensional terms $chi$, $zeta$ (normalised by a nominal length $hat(l) = hat(v) hat(t)$): $  dot(chi) & = nu cos gamma \
+dot(zeta) & = nu sin gamma $<eq:xdot-nondim> The equations are numerically integrated to provide time series solutions for the four variables $chi$, $zeta$, $nu$, $gamma$. Equations are integrated using a 4th order Runge-Kutta method with adaptive time step and absolute and relative tolerances of $10^(-6)$. All simulations, plots, and analyses were conducted using the Julia programming language @bezansonJuliaFreshApproach2017 @rackauckasDifferentialequationsjlaPerformantFeaturerich2017 @caillauOptimalControljlJuliaPackage2025@DanischKrumbiegel2021.
+
+== Phase space analysis<sec-methods-phase-space>
+To elucidate the structure of the dynamics for our system we make use of phase (or state) spaces (@fig-fbd\C). A phase space shows the space of all possible states of the system, with a particular point in phase space representing a particular state of the system. A trajectory in phase space represents the dynamic evolution of the state of the system. For the 2D system considered here, the state of the system is represented non-dimensionally by its speed, $nu$, and the flight path angle, $gamma$; its position ($chi \, zeta$) does not affect the dynamics and so does not need to be considered. Here, the flight path angle, $gamma$, is bounded by $- pi \/ 2$ and $pi \/ 2$. While it is physically possible for $gamma$ to have values outside this range, as this behaviour is not typical in landing it simplifies the analysis to only illustrate this range. This choice does not affect the predictions of the model. The phase spaces are bounded by the maximum terminal speed of the model $nu_T^* = sqrt(1\/C_(D 0))$ for clarity.
+
+The phase space in @fig-fbd\C is divided into different regions and coloured based on the model's behaviour in that region. The blue and yellow regions are defined by the sign of the system's translational acceleration: in the blue region the system is decelerating ($dot(nu) < 0$); in the yellow region the system is accelerating ($dot(nu) > 0$). The green region indicates where the flight path angle is decreasing ($dot(gamma) < 0$); outside the green region the flight path angle is increasing ($dot(gamma) > 0$; this region is left uncoloured for clarity).
+
+The boundaries of the regions are nullclines (curves where $dot(nu) = 0$ or $dot(gamma) = 0$) and their location depends upon the control strategy chosen. An example trajectory with a control strategy keeping a constant angle of attack, $alpha = 45 thin "deg"$ is shown by the grey line in physical space @fig-fbd\B with the corresponding trajectory in phase space with the nullclines in @fig-fbd\C. This trajectory begins in the blue region where $dot(nu) < 0$ and $dot(gamma) > 0$ and so the trajectory in phase space moves leftwards and upwards. It then enters the green region where $dot(gamma) < 0$ and so the trajectory begins to move downwards in phase space. The trajectory continues downwards until it reaches the yellow region where now $dot(nu) > 0$ and so it moves to the right and down, until eventually leaving the green region where now $dot(gamma) > 0$ again, and so the trajectory curves upwards and to the right. Analysing the phase space in such a way allows a qualitative description of the system and will be useful later in determining an optimal control strategy.
+
+#let stall_speed = $nu_("stall")$
+#let term_speed = $nu_("term")$
+In this work we generalise the definitions of the stall speed, #stall_speed, and the terminal speed, #term_speed, which usually only consider horizontal and vertical flight @andersonIntroductionFlight2008, to be continuous functions of the flight path angle (@fig-fbd\D,E). The stall speed is the minimum speed required to generate the lift needed to maintain a given flight path angle. This speed will decrease for steeper flight paths as only a smaller component of the weight needs to be balanced by lift, with the largest #stall_speed occurring for horizontal flight (@fig-fbd\D). The terminal speed is the lowest speed at which gravitational and drag forces balance for a given flight path angle (this is equivalent to the speed a mass sliding down a frictionless slope with aerodynamic drag would reach). While usually considered as the maximum speed an object can accelerate from rest to under gravity, #term_speed is equivalently the minimum speed that can be decelerated to from high speeds due to drag. The terminal speed is maximum for vertical descent and decreases to zero for horizontal flight. For climbing flight ($gamma > 0$), the terminal speed is ill-defined as the system will reach zero speed with a non-zero acceleration. These definitions of #stall_speed and #term_speed directly map to the nullclines in phase space and hence #stall_speed is equivalent to the boundary of the green region and #term_speed is equivalent to the boundary of the yellow region (@fig-fbd/C). The boundary for #term_speed (the nullcline for $nu$) represents the ideal landing point for any given trajectory (point E for the trajectory given in @fig-fbd) that is trying to minimise touchdown speed, as the speed always increases after passing through this boundary. For a given touchdown angle, #stall_speed and #term_speed depend on $C_L$ and $C_D$, respectively (@fig-fbd\F) and so will be controlled by the angle of attack.
+
+#figure(
+  image("../figs/freebodydiagram.pdf"),
+  // box(width: 100%, height: 150pt, fill: luma(240), stroke: 1pt + black),
+  caption: [ Example simulation of the longitudinal flight dynamics of the point mass model using a constant angle of attack strategy ($alpha = 45 thin "degrees"$) showing the free body diagram (A) and resulting trajectories in physical (B) and phase (C) space. Circle markers indicate the start of the trajectory and diamonds indicate the end. Black arrowheads show the direction of travel and are located at 10% of the total flight time. These annotations are used throughout. Green and yellow squares indicate when the stall (D) and terminal speeds (E) are reached and also shown are how these speeds vary with the flight path angle and $alpha$ (F). Dotted portion of the trajectory in (B) and (C) shows how the trajectory would continue after reaching its minimum speed. Vectors in (D) and (E) shown at double the scale of (A) for clarity.
+  ],
+) <fig-fbd>
+
+
+== Optimal control <sec-methods-optcontrol>
+A control strategy specifies $alpha$ as a function of the current state of the system and possibly time, with the optimal control strategy minimsing a specified cost function. For the main analysis, we seek solutions which minimise the final speed of the bird as this aligns with the proposal that minimising touchdown kinetic energy relaxes the constraint on required leg skeletomuscular mass, indirectly improving overall flight economy. We derive the optimal solution through analysis of the phase space divided into the different regions @robertsPropellingTorqueControlled1979 as described above. By defining the behaviour in these different regions, an optimal trajectory through phase space can be constructed and from which the optimal control strategy is derived. The resulting control law is also derived analytically from Pontryagin's Maximum Principle @kirkOptimalControlTheory2004 giving the necessary conditions for an optimal trajectory. For more complex cases where constraints on the possible trajectories and alternative cost function are added, only numerical solutions for the optimal control are possible.
+
+The numerical solutions are found via direct collocation, a numerical technique for solving optimal control problems that has been used in flight dynamics @mooreRobustPoststallPerching2014 @alikhanFlightDynamicsOptimization2013 and biomechanics applications @porsaDirectMethodsPredicting2016 @bishopPredictiveSimulationsMusculoskeletal2021. Direct collocation reduces the optimal control problem to a non-linear programming problem by discretising the state and control trajectories into a number of collocation points. The dynamics are then introduced as constraints at the collocation points and the state and control at these points are chosen to minimise a cost function. See @bettsOptimalControl for a more detailed description.
+
+The solutions here were generated by first solving with 20 collocation points, then using this solution as an initial guess for a second solution with 100 collocation points. The dynamics were discretised using the trapezoidal method and the final time was a free variable determined by the optimisation. More specific details on each optimisation such as the cost function used or constraints added are given in the subsequent sections.
+
+The discretised solutions are made continuous through fitting a cubic Hermite spline between the state collocation points and linearly interpolating the control collocation points. To test the accuracy of the discretisation, the continuous control was used as input to the dynamics model to generate a solution with higher accuracy. The two solutions showed excellent agreement (root mean square error < 0.01 for each state variable).
