@@ -1,6 +1,6 @@
-using GlideLandingPaper, PointMass, OrdinaryDiffEqTsit5, CairoMakie
+using UnpoweredLandingsPaper, PointMass, OrdinaryDiffEqTsit5, CairoMakie
 using ForwardDiff: gradient
-using GlideLandingPaper: full_page_fig_height, full_page_fig_width, pt
+using UnpoweredLandingsPaper: full_page_fig_height, full_page_fig_width, pt
 
 ∇α(u, p, t) = gradient(u -> PointMass.alpha(u, p, t), u)
 ∇α̇(u, p, t) = gradient(u -> ∇α(u, p, t)' * dynamics(u, p, t), u)

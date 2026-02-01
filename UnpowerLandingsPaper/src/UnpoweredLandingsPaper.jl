@@ -1,4 +1,4 @@
-module GlideLandingPaper
+module UnpoweredLandingsPaper
 
 using CairoMakie, PointMass, OrdinaryDiffEqTsit5, NonlinearSolve, DelimitedFiles, Folds
 using QuadGK: quadgk
@@ -36,7 +36,7 @@ Generates then saves figures specified in `figs`.
 
 `figs` is a dictionary with keys being the figure name and value a function to generate the figure, `ft`, specifies the filetype to save as, `kwargs` are passed on to `Makie.save`
 """
-function create_figures(figs; ft = "pdf", kwargs...)
+function create_figures(figs; ft="pdf", kwargs...)
     for (name, fcn) in figs
         @info "generating $name"
         with_logger(ConsoleLogger(Error)) do
@@ -57,7 +57,7 @@ plotfcns = [
 ]
 figs_dict = Dict(string(fcn) => fcn for fcn in plotfcns)
 
-function (@main)(; ft = "pdf", kwargs...)
+function (@main)(; ft="pdf", kwargs...)
     return create_figures(figs_dict; ft, kwargs)
 end
 
@@ -71,4 +71,4 @@ export create_figures, figs_dict
 #     foreach(Base.Fix2(invoke, Tuple{}), plotfcns)
 # end
 
-end # module GlideLandingPaper
+end # module UnpoweredLandingsPaper

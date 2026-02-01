@@ -1,5 +1,5 @@
 ## compare different methods to simulate optimal solutions
-using GlideLandingPaper, PointMass, BoundaryValueDiffEq, OrdinaryDiffEqTsit5, NonlinearSolve, CairoMakie
+using UnpoweredLandingsPaper, PointMass, BoundaryValueDiffEq, OrdinaryDiffEqTsit5, NonlinearSolve, CairoMakie
 import CairoMakie.Makie.SpecApi as S
 using ForwardDiff: derivative, gradient
 

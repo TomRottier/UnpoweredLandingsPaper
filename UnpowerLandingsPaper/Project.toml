@@ -1,4 +1,4 @@
-name = "GlideLandingPaper"
+name = "UnpoweredLandingsPaper"
 uuid = "d01a3adb-daf7-4528-a80f-8345950758df"
 version = "0.1.0"
 authors = ["tom <tom.rottier@manchester.ac.uk>"]
@@ -24,8 +24,8 @@ PointMass = "cef08b25-cf8f-4213-b67e-f952c602b589"
 QuadGK = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
 
 [sources]
-PointMass = {path = "lib/PointMass.jl/"}
-Makie = {url = "https://github.com/TomRottier/Makie.jl", subdir = "Makie"}
+Makie = {subdir = "Makie", url = "https://github.com/TomRottier/Makie.jl"}
+PointMass = {path = "lib\\PointMass.jl"}
 
 [compat]
 CairoMakie = "0.15.6"

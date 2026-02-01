@@ -1,6 +1,6 @@
 # animate how the phase space changes for a non-constant control strategy
-using GlideLandingPaper, GLMakie, PointMass, OrdinaryDiffEqTsit5
-using GlideLandingPaper: cs3, bird
+using UnpoweredLandingsPaper, GLMakie, PointMass, OrdinaryDiffEqTsit5
+using UnpoweredLandingsPaper: cs3, bird
 
 pa = TrigAerodynamics(1.5, 0.03, 2.0)
 pc = OptControl()

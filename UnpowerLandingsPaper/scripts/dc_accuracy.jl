@@ -1,4 +1,4 @@
-using GlideLandingPaper, PointMass
+using UnpoweredLandingsPaper, PointMass
 
 
 ## compare the accuracy of the direct collocation solutions to that with numerical integration
