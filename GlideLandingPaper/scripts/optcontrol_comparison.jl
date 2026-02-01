@@ -14,7 +14,7 @@ end
 PointMass.thrust(x, p::Parameters{<:Aerodynamics, <:OptControlAug}, t) = 0.0
 PointMass.thrust_angle(x, p::Parameters{<:Aerodynamics, <:OptControlAug}, t) = 0.0
 
-H(x, p, t) = (1 + x[5]) * ν̇(x, p, t) + x[6] * θ̇(x, p, t)
+H(x, p, t) = (1 + x[5]) * ν̇(x, p, t) + x[6] * γ̇(x, p, t)
 
 function full_dynamics!(dx, x, p::Parameters{<:Aerodynamics, OptControlAug}, t)
     ∇x = gradient(x -> H(x, p, t), x)
