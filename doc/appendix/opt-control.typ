@@ -1,7 +1,7 @@
 = Optimal control strategy <supp-mat-optcontrol>
 The optimal control problem is stated as follows. Find the optimal control strategy $alpha(t)$ that minimises the following cost function $J$:
 $
-  J(alpha) = integral_(t_0)^(t_f) dot(nu) dif t
+  J = integral_(t_0)^(t_f) dot(nu) dif t
 $
 subject to the system dynamics:
 $
@@ -52,11 +52,11 @@ which can be solved explicitly for $alpha$ in terms of the state and costate var
 $
   cot 2alpha = (1+p_1)/p_2 C_(D"max")/(2C_(L"max")) nu
 $
-Conventional techniques for solving boundary value problems can then be used to determine the optimal solution. However, this problem can more easily solved as an initial value problem by choosing a touchdown speed. For a given touchdown speed $nu_("TD")$, the resulting value of $gamma$ can be calculated such that it gives $dot(nu) = 0$ (i.e. the minimum speed has been reached). To do so however requires knowing the value of $alpha$ at touchdown. This can be found by considering @eq-optcontrol-costate evaluated at $t_f$:
+Conventional techniques for solving boundary value problems can then be used to determine the optimal solution. However, this problem can more easily solved as an initial value problem by choosing a touchdown speed. For a given touchdown speed $nu_("TD")$, the resulting value of $gamma$ can be calculated such that it gives $dot(nu) = 0$ (i.e. the minimum speed has been reached). To do so however requires knowing the value of $C_D$ (and therefore $alpha$) at touchdown. This can be found by considering @eq-optcontrol-costate evaluated at $t_f$:
 $
   (partial cal(H)) / (partial alpha) (t_f) = -nu^2 (partial C_D) / (partial alpha) = 0
 $
-as $p_1(t_f) = p_2(t_f) = 0$. Thus choosing the value of $alpha$ which maximises $C_D$ is the optimal control at $t_f$. As now $nu, gamma, p_1, p_2$ are all known at $t_f$ the solution can be integrated backwards in time to an arbitrary point to generate the solution.
+as $p_1(t_f) = p_2(t_f) = 0$. Thus choosing the value of $alpha$ which maximises $C_D$ is the optimal at $t_f$; optimal trajectories touchdown at maximum $C_D$. As $nu$, $gamma$, $p_1$, and $p_2$ are all known at $t_f$ the solution can be integrated backwards in time to an arbitrary point to generate the solution.
 
 Alternatively, the optimal control law can be derived without the inclusion of the costate variables, as given in the text (@eq-opt-control-alpha). If the final time is left free, as is the case here, then $cal(H) = 0$ for $t in [t_0, t_f]$ along the optimal solution @kirkOptimalControlTheory2004, therefore:
 $
@@ -78,9 +78,9 @@ or:
 $
   (partial C_D) / (partial alpha) nu dot(gamma) + (partial C_L) / (partial alpha) dot(nu) = 0
 $ <eq-opt-control-pmp>
-which is the optimal control law as given in @eq-opt-control-alpha, see below. This equation can then be solved for $alpha$ as a function of just the state variables $nu$ and $gamma$.
+which is the optimal control law as given in @eq-opt-control-alpha. This equation can then be solved for $alpha$ as a function of just the state variables $nu$ and $gamma$. Here, this equation is solved for $alpha$ numerically using the ITP method, which has similar robustness to the bisection method but with improved convergence. The ITP method requires an interval with opposite signs of the function at each end, ensuring the solution is enclosed in the interval. This interval is given by $alpha_("min")$, which is the minimum value of $alpha$ for which $dot(nu) < 0$ and $pi\/2$.
 
-Alternatively the optimal control law can be derived from assuming that the optimal strategy is to minimise $dot(gamma) / dot(nu)$, as given in the main text. This ratio can be expressed as:
+Alternatively the optimal control law can be derived from assuming that the optimal strategy is to maximise the increase in flight path angle per decrease in speed, or $dot(gamma) / dot(nu)$, as given in the main text. This ratio can be expressed as:
 $
   dot(gamma) / dot(nu) = (C_L nu - cos gamma \/ nu) / (-C_D nu^2 - sin gamma)
 $
