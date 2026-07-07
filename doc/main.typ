@@ -30,34 +30,3 @@
 #pagebreak()
 
 #bibliography("references.bib", style: "proceedings-of-the-royal-society-b.csl")
-
-#pagebreak()
-
-= Supplementary Material <supp-mat>
-#let appendix(body) = {
-  let app_state = state("")
-  show heading.where(level: 1): it => {
-    app_state.update(counter(heading).display())
-    counter(math.equation).update(0)
-    counter(figure.where(kind: image)).update(0)
-    it
-  }
-  set heading(numbering: "A.1", supplement: [Supplementary Material])
-  set math.equation(numbering: it => {
-    [(#app_state.get()-#it)]
-  })
-  set figure(numbering: it => {
-    [#app_state.get()-#it]
-  })
-  counter(heading).update(0)
-  body
-}
-#show: appendix
-#include "appendix/rigidbody.typ"
-#include "appendix/opt-control.typ"
-// #include "appendix/energy-height.typ"
-
-// == Supplementary material A <supp-mat-rigidbody>
-// == Supplementary material B <supp-mat-optcontrol>
-// == Supplementary material C <supp-mat-energyheight>
-

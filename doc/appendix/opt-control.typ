@@ -48,17 +48,17 @@ The optimal control law is given by:
 $
   (partial cal(H)) / (partial alpha) = -(1+p_1) nu^2 (partial C_D) / (partial alpha) + p_2 nu (partial C_L) / (partial alpha) = 0
 $ <eq-optcontrol-costate>
-which can be solved explicitly for $alpha$ in terms of the state and costate variables for the aerodynamics model used here (@eq-clcd):
+which can be solved explicitly for $alpha$ in terms of the state and costate variables for the trigonometric aerodynamics model used here:
 $
   cot 2alpha = (1+p_1)/p_2 C_(D"max")/(2C_(L"max")) nu
 $
-Conventional techniques for solving boundary value problems can then be used to determine the optimal solution. However, this problem can more easily solved as an initial value problem by choosing a touchdown speed. For a given touchdown speed $nu_("TD")$, the resulting value of $gamma$ can be calculated such that it gives $dot(nu) = 0$ (i.e. the minimum speed has been reached). To do so however requires knowing the value of $C_D$ (and therefore $alpha$) at touchdown. This can be found by considering @eq-optcontrol-costate evaluated at $t_f$:
+Conventional techniques for solving boundary value problems can then be used to determine the optimal solution. However, this problem can more easily solved as an initial value problem by choosing a touchdown speed. For a given touchdown speed $nu_("TD")$, the resulting value of $gamma$ can be calculated such that it gives $dot(nu) = 0$ (i.e. the minimum speed has been reached). To do so requires knowing the value of $C_D$ (and therefore $alpha$) at touchdown which can be found by considering @eq-optcontrol-costate evaluated at $t_f$:
 $
   (partial cal(H)) / (partial alpha) (t_f) = -nu^2 (partial C_D) / (partial alpha) = 0
 $
 as $p_1(t_f) = p_2(t_f) = 0$. Thus choosing the value of $alpha$ which maximises $C_D$ is the optimal at $t_f$; optimal trajectories touchdown at maximum $C_D$. As $nu$, $gamma$, $p_1$, and $p_2$ are all known at $t_f$ the solution can be integrated backwards in time to an arbitrary point to generate the solution.
 
-Alternatively, the optimal control law can be derived without the inclusion of the costate variables, as given in the text (@eq-opt-control-alpha). If the final time is left free, as is the case here, then $cal(H) = 0$ for $t in [t_0, t_f]$ along the optimal solution @kirkOptimalControlTheory2004, therefore:
+Alternatively, the optimal control law can be derived without the inclusion of the costate variables, as given in the main text. If the final time is left free, as is the case here, then $cal(H) = 0$ for $t in [t_0, t_f]$ along the optimal solution @kirkOptimalControlTheory2004, therefore:
 $
   (1 + p_1) dot(nu) + p_2 dot(gamma) = 0
 $
@@ -78,7 +78,7 @@ or:
 $
   (partial C_D) / (partial alpha) nu dot(gamma) + (partial C_L) / (partial alpha) dot(nu) = 0
 $ <eq-opt-control-pmp>
-which is the optimal control law as given in @eq-opt-control-alpha. This equation can then be solved for $alpha$ as a function of just the state variables $nu$ and $gamma$. Here, this equation is solved for $alpha$ numerically using the ITP method, which has similar robustness to the bisection method but with improved convergence. The ITP method requires an interval with opposite signs of the function at each end, ensuring the solution is enclosed in the interval. This interval is given by $alpha_("min")$, which is the minimum value of $alpha$ for which $dot(nu) < 0$ and $pi\/2$.
+which is the optimal control law as given in the main text. This equation can then be solved for $alpha$ as a function of just the state variables $nu$ and $gamma$. Here, this equation is solved for $alpha$ numerically using the ITP method, which has similar robustness to the bisection method but with improved convergence. The ITP method requires an interval with opposite signs of the function at each end, ensuring the solution is enclosed in the interval. This interval is given by $alpha_("min")$, which is the minimum value of $alpha$ for which $dot(nu) < 0$ and $pi\/2$.
 
 Alternatively the optimal control law can be derived from assuming that the optimal strategy is to maximise the increase in flight path angle per decrease in speed, or $dot(gamma) / dot(nu)$, as given in the main text. This ratio can be expressed as:
 $
@@ -105,7 +105,7 @@ The optimal control problem can thus be solved in three distinct ways
 
 - solve the original system (no co-state) with the optimal control strategy given by numerically solving @eq-opt-control-pmp/@eq-opt-control2 at each time step.
 
-- solve the optimal control problem directly as a non-linear programming problem using direct collocation as described in @sec-methods-optcontrol.
+- solve the optimal control problem directly as a non-linear programming problem using direct collocation as described in main text.
 
 The three different methods produce identical solutions within the error of the numerical methods (@fig-opt-control-compare).
 
