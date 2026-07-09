@@ -63,10 +63,10 @@ const plottheme = Theme(
 const experimental_data = let
     dataf = joinpath(dirname(@__DIR__), "data", "mean_data.csv")
     data_all = readdlm(dataf, ',')
-    data_5m = data_all[data_all[:, 1].==5, :]
-    data_7m = data_all[data_all[:, 1].==7, :]
-    data_9m = data_all[data_all[:, 1].==9, :]
-    data_12m = data_all[data_all[:, 1].==12, :]
+    data_5m = data_all[data_all[:, 1] .== 5, :]
+    data_7m = data_all[data_all[:, 1] .== 7, :]
+    data_9m = data_all[data_all[:, 1] .== 9, :]
+    data_12m = data_all[data_all[:, 1] .== 12, :]
     m = 0.738
     S = 0.2098
     b = 1.07

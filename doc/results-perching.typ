@@ -29,6 +29,8 @@ The resulting trajectories depend on both the available thrust and the weighting
 
 The swooping behaviour was largely present only when touchdown speed was included in the cost function (@fig-perching\C-F), with even very small values of $lambda$ causing the trajectories to swoop downwards compared with not including touchdown speed at all. Our previous analysis of the dynamics explains why this is the case. Swooping (combined with additional thrust) allows the bird to build up more speed, leading to steeper climb angles and ultimately lower touchdown speeds. Diving plus thrust allows greater speeds to be reached than diving alone due to the spatial constraints on the landing site (@fig-perching\F).
 
+The drivers of perching behaviour across all scales of birds may be further influenced by the ability for low-speed flapping flight. As birds increase in size flapping is less commonly used @pennycuickPowerRequirementsHorizontal1968 @ellingtonLimitationsAnimalFlight1991 and this may force larger birds to adopt the fixed-wing perching behaviour here. At smaller scales where flapping is common, a fixed-wing perching strategy would require less energy to land and may explain why such a strategy is a learned behaviour @kleinheerenbrinkOptimizationAvianPerching2022.
+
 
 #figure(
   image("../figs/perching.pdf"),
