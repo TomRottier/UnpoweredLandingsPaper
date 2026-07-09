@@ -8,18 +8,28 @@ Lift introduces oscillations into the trajectories as the flight path angle can 
 \[
     \nu=\frac{1}{\sqrt{C_L}}, \qquad \gamma = 0 .
 \]
-In physical space these oscillations correspond to undamped phugoid oscillations that continue indefinitely. Drag changes the fixed point to a stable spiral located at
+In physical space these oscillations correspond to undamped phugoid oscillations that continue indefinitely (Fig.~\ref{fig-phase-space-dynamics}Bi). Drag changes the fixed point to a stable spiral located at
 \[
     \nu=\frac{1}{\sqrt[4]{C_L^2+C_D^2}}, \qquad
     \gamma=\arctan\!\left(-\frac{C_D}{C_L}\right),
 \]
-(black cross in Fig.~\ref{fig-phase-space-dynamics}Bii) which attracts nearby trajectories. In physical space, trajectories undergo damped phugoid oscillations, eventually reaching a trimmed glide. As the angle of attack in Fig.~\ref{fig-phase-space-dynamics}B gives maximum $C_L/C_D$, the resulting trimmed glide has the shallowest glide slope.
+(black cross in Fig.~\ref{fig-phase-space-dynamics}Bii) which attracts nearby trajectories. In physical space, trajectories undergo damped phugoid oscillations, eventually reaching a trimmed glide (Fig.~\ref{fig-phase-space-dynamics}Bii). As the angle of attack in Fig.~\ref{fig-phase-space-dynamics}B gives maximum $C_L/C_D$, the resulting trimmed glide has the shallowest glide slope.
 
-Increasing the angle of attack leads to larger lift and drag, but the qualitative behaviour in phase space and physical space remains unchanged (Fig.~\ref{fig-phase-space-dynamics}C). At maximum $C_L$ the capacity to increase flight path angle is maximised (resulting in the smallest region in phase space in which the flight path angle reduces) and the smallest stall speeds (Fig.~\ref{fig-phase-space-dynamics}C). The larger drag coefficient increases the damping of the phugoid oscillations, making the system reach a trimmed glide quicker and with a steeper glide slope.
+Increasing the angle of attack leads to larger lift and drag, but the qualitative behaviour in phase space and physical space remains unchanged (Fig.~\ref{fig-phase-space-dynamics}C). At maximum $C_L$ the capacity to increase flight path angle is maximised (resulting in the smallest green region in phase space in which the flight path angle reduces) and the smallest stall speeds (Fig.~\ref{fig-phase-space-dynamics}C). The larger drag coefficient increases the damping of the phugoid oscillations, making the system reach a trimmed glide quicker and with a steeper glide slope (Fig.~\ref{fig-phase-space-dynamics}Cii).
 
 Increasing $\alpha$ further to maximum $C_D$ (Fig.~\ref{fig-phase-space-dynamics}D) results in a similar picture of the dynamics as in Fig.~\ref{fig-phase-space-dynamics}A, as both produce zero lift and the system again behaves as a projectile. The only difference is that the fixed point is now at the lowest possible terminal speed for a projectile with drag (Fig.~\ref{fig-phase-space-dynamics}D).
 
 The trajectories of gliding birds with lift and drag all tend towards a trimmed glide (Fig.~\ref{fig-phase-space-dynamics}Aii--Dii). However, in the context of a landing we assume the trajectory is terminated prior to this when the bird reaches its minimum speed, $\nu_{\mathrm{term}}$ (Fig.~\ref{fig-fbd}E). This minimum speed occurs at the first crossing of the boundary between the blue and yellow regions.
+
+
+\begin{figure}[!tbp]
+    \centering
+    \includegraphics[width=\textwidth]{dynamics_phasespace}
+    \caption{
+        Dynamics of the point mass model under constant $\alpha$ control strategies. Trajectories are plotted in phase space (coloured backgrounds) and physical space (white backgrounds), beginning from different initial conditions indicated by the line colour. The same initial conditions are used for each case. Phase spaces are coloured and trajectory annotations are as previously described (Fig.~\ref{fig-fbd}). Insets for the physical space trajectories show zoomed in portions of the trajectory. Columns Ai--Di are models that only include lift and neglect drag; columns Aii--Dii are models that include both lift and drag. Each row represents a different control strategy: (A) minimum $C_D$, (B) maximum $C_L/C_D$, (C) maximum $C_L$, (D) maximum $C_D$. Phase spaces are bounded in the $\nu$ direction by $\nu_T^*$, which is the maximum terminal speed of the model $\bigl(\sqrt{1/C_{D0}}\bigr)$. Fixed points of the system are shown with a black cross.
+    }
+    \label{fig-phase-space-dynamics}
+\end{figure}
 
 The general structure of a landing trajectory can then be understood in terms of $\nu_{\mathrm{stall}}$ and $\nu_{\mathrm{term}}$. As the system decelerates (moving to the left in phase space) it will eventually reach $\nu_{\mathrm{stall}}$ (occurring at the nullcline for $\gamma$; the boundary of the green region). Once this speed is reached, sufficient lift cannot be produced to maintain the flight path angle and $\gamma$ must begin to decrease; in phase space this causes the trajectory to turn downwards. Next $\nu_{\mathrm{term}}$ is reached, the trajectory crosses from the blue to the yellow region in phase space, at which point the minimum speed has been reached and touchdown occurs.
 
@@ -31,12 +41,3 @@ To reduce the minimum speed requires crossing into the green region higher up in
 \]
 
 The stall speed can also be reduced by increasing $C_L$ (Fig.~\ref{fig-fbd}D). For quasi-steady aerodynamics, increasing $\alpha$ beyond the aerodynamic stall angle will lead to reductions in $C_L$ due to flow separation \cite{andersonIntroductionFlight2008}. This effect can be mitigated with high-lift devices such as a bird's alula feather \cite{leeFunctionAlulaAvian2015,linehanMaintenanceAttachedLeadingedge2020}, which acts similarly to a leading-edge slat, or through unsteady aerodynamic effects which delay stall and increase $C_{L\max}$ \cite{granlundUnsteadyPitchingFlat2013,poletUnsteadyDynamicsRapid2015,kieferDynamicStallHigh2022}. While not considered in the non-dimensional model, decreases in wing loading (e.g.\ through extending the wing to increase planform area) can also decrease the stall speed. Lower stall speeds ultimately lead to lower terminal speeds and may explain observations of birds utilising such strategies when landing \cite{carruthersAutomaticAeroelasticDevices2007,leeFunctionAlulaAvian2015,poletRapidAreaChange2015}.
-
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=\textwidth]{dynamics_phasespace}
-    \caption{
-        Dynamics of the point mass model under constant $\alpha$ control strategies. Trajectories are plotted in phase space (coloured backgrounds) and physical space (white backgrounds), beginning from various initial conditions indicated by the line colour. The same initial conditions are used for each case. Phase spaces are coloured and trajectory annotations are as previously described (Fig.~\ref{fig-fbd}). Columns Ai--Di are models that only include lift and neglect drag; columns Aii--Dii are models that include both lift and drag. Each row represents a different control strategy: (A) minimum $C_D$, (B) maximum $C_L/C_D$, (C) maximum $C_L$, (D) maximum $C_D$. Phase spaces are bounded in the $\nu$ direction by $\nu_T^*$, which is the maximum terminal speed of the model $\bigl(\sqrt{1/C_{D0}}\bigr)$. Fixed points of the system are shown with a black cross.
-    }
-    \label{fig-phase-space-dynamics}
-\end{figure}

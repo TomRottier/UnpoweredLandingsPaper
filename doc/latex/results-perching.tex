@@ -19,17 +19,22 @@ where $T$ is the touchdown time and $f$ is an indicator function that returns 1 
 \begin{equation}
     J = \int_0^T f(\alpha)\,\mathrm{d}t
 \end{equation}
-which is the \emph{time} spent stalled, with no representation of speed. The solutions which minimise stall time lead to much larger touchdown speeds because larger speeds reach the landing site quicker, reducing the time spent stalled (red and purple lines in Fig.~\ref{fig-perching}A). As some combination of stall and touchdown speed likely influence flight behaviour, we introduce a new cost function, which accounts for these effects independently from one another:
+which is the \emph{time} spent stalled, with no representation of speed. The solutions which minimise stall time lead to much larger touchdown speeds because larger speeds reach the landing site quicker, reducing the time spent stalled (red and purple lines in Fig.~\ref{fig-perching}A).
+
+As some combination of stall and touchdown speed likely influence flight behaviour, we introduce a new cost function, which accounts for these effects independently from one another:
 \begin{equation}
     J = \lambda v(T) + (1-\lambda)\int_0^T f(\alpha)\,\mathrm{d}t
 \end{equation}
-where $\lambda$ is the weighting factor between the two. By varying the weighting factor the influence of stall effects and speed effects on the trajectory can be considered methodically (Fig.~\ref{fig-perching}B).
+where $\lambda$ is the weighting factor between the two. By varying the weighting factor the influence of stall effects and speed effects on the trajectory can be considered (Fig.~\ref{fig-perching}B).
 
 The two components in the cost function were normalised to values between 0 and 1 by taking their maximum and minimum values from the two extreme cases (e.g. the minimum and maximum touchdown speeds were taken from the solutions with $\lambda=1$ and $\lambda=0$ respectively). The stall angle is taken to be $20^\circ$, in line with previous work \cite{wuestAgilePerchingManeuvers2024}, but the results are qualitatively insensitive to this choice. The hyperbolic tangent function was used as a smooth approximation for the indicator function \cite{wuestAgilePerchingManeuvers2024}.
 
 The resulting trajectories depend on both the available thrust and the weighting factor. For low values of $C_{T\max}$, $\lambda$ had only a minor effect on the resulting trajectories (Fig.~\ref{fig-perching}C) as the space of possible trajectories was limited by the constraint on touchdown position. For values of $C_{T\max}$ lower than 0.75 the model was unable to reach the perch for the given initial conditions. For larger values of $C_{T\max}$, the resulting trajectories diverged at the extremes of $\lambda$ (Fig.~\ref{fig-perching}E,F). Solely minimising stall time ($\lambda=0$) caused an initial climb before descending to the perch, whereas solely minimising touchdown speed ($\lambda=1$) resulted in deep, swooping trajectories. Intermediate values of $\lambda$ generally resulted in the best match with the experimental data, indicating that some combination of minimising stall effects and touchdown speed drive this behaviour in birds. Unlike as previously proposed \cite{kleinheerenbrinkOptimizationAvianPerching2022}, solely minimising the effects of stall did not produce trajectories seen in perching birds; this is likely due to these solutions having very large touchdown speeds that would be harmful to the birds (Fig.~\ref{fig-perching}B). Instead, the good match to the data that previous modelling work found stems from the cost function used, minimising the distance flown stalled, which conflates the effects of touchdown speed and stall.
 
 The swooping behaviour was largely present only when touchdown speed was included in the cost function (Fig.~\ref{fig-perching}C--F), with even very small values of $\lambda$ causing the trajectories to swoop downwards compared with not including touchdown speed at all. Our previous analysis of the dynamics explains why this is the case. Swooping (combined with additional thrust) allows the bird to build up more speed, leading to steeper climb angles and ultimately lower touchdown speeds. Diving plus thrust allows greater speeds to be reached than diving alone due to the spatial constraints on the landing site (Fig.~\ref{fig-perching}F).
+
+The drivers of perching behaviour across all scales of birds may be further influenced by the ability for low-speed flapping flight. As birds increase in size flapping is less commonly used \cite{pennycuickPowerRequirementsHorizontal1968,ellingtonLimitationsAnimalFlight1991} and this may force larger birds to adopt the fixed-wing perching behaviour here. At smaller scales where flapping is common, a fixed-wing perching strategy would require less energy to land and may explain why such a strategy is a learned behaviour \cite{kleinheerenbrinkOptimizationAvianPerching2022}.
+
 
 \begin{figure}[!htbp]
     \centering

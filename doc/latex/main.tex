@@ -2,7 +2,9 @@
 \jname{rspa}
 \Journal{Proc R Soc A\ }
 \titlehead{Research}
-\graphicspath{{../../figs}}
+\graphicspath{{figs}}
+
+\usepackage{placeins}
 
 \begin{document}
 \title{Flight dynamics and control of unpowered avian landings}
@@ -25,13 +27,19 @@
 
 \input{introduction.tex}
 \input{methods.tex}
+\FloatBarrier
 
 \section{Results and discussion}
 \input{results-dynamics.tex}
+\FloatBarrier
 \input{results-opt-control.tex}
+\FloatBarrier
 \input{results-constraints.tex}
+\FloatBarrier
 \input{results-perching.tex}
+\FloatBarrier
 \input{results-sensitivity.tex}
+\FloatBarrier
 
 \input{conclusion.tex}
 
