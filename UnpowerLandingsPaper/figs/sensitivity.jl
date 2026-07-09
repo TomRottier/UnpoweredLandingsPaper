@@ -96,7 +96,11 @@ function sensitivity()
         return [ax1, ax2]
     end
 
-    gl = S.GridLayout(vec([(j, i) => axs[i][j] for i in 1:2, j in 1:2]))
+    gl = S.GridLayout([
+        vec([(j, i) => axs[i][j] for i in 1:2, j in 1:2]);
+        (1, 1, TopLeft()) => S.Label(; text="A", padding=(0, 0, 10, 0), font=:bold, fontsize=14pt);
+        (1, 2, TopLeft()) => S.Label(; text="B", padding=(0, 0, 10, 0), font=:bold, fontsize=14pt);
+    ])
 
     plot(f[1, 1], gl)
     tightlimits!(f.content[1])
