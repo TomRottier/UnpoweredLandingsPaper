@@ -1,4 +1,4 @@
-# Flight dynamics and control of unpowered avian landings
+# Flight dynamics and optimal control of unpowered avian landings
 
 This repository contains all the code needed to generate the results, figures, and document for this paper. All analysis, simulations, and figures are generated using the [Julia](https://julialang.org) programming language (version 1.12.4). The document is generated using [Typst](https://typst.app/home) (version 0.14.2).
 
