@@ -9,7 +9,7 @@ The system with lift and drag included can be considered as an intermediate betw
 $
   (dif gamma) / (dif nu) = dot(gamma) / dot(nu) = (C_L nu - cos gamma) / (-C_D nu^2 - sin gamma)
 $ <eq-opt-control>
-and the value of alpha which minimises this ratio therefore gives the largest increase in $gamma$ per decrease in $nu$. As we only consider decelerating trajectories ($-C_D nu^2 - sin gamma < 0$) the solution is well defined. In phase space this ratio represents the gradient of the trajectory, so minimising it causes trajectories to move as steeply as possible to the top left corner where speed is minimised.
+and the value of alpha which minimises this ratio therefore gives the largest increase in $gamma$ per decrease in $nu$. As we only consider decelerating trajectories ($-C_D nu^2 - sin gamma < 0$) the solution is well defined. In phase space this ratio represents the gradient of the trajectory, so minimising it causes trajectories to move as steeply as possible to the top-left corner where speed is minimised.
 
 Solving for the value of $alpha$ which maximises @eq-opt-control involves solving the following equation:
 $

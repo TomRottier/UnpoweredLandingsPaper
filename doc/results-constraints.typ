@@ -21,7 +21,7 @@ The minimum touchdown speed landing is an extension of the horizontal landing. O
 
 For steeper landings ($-pi\/2 < gamma < gamin$), the touchdown speed increases and #stall_speed is reached with $gamma < 0$. After this point, the optimal control strategy in @sec-results-optcontrol is still followed to achieve the minimum touchdown speed. For a vertical landing, #stall_speed = 0 and #term_speed can be achieved through a constant, maximum $C_D$.
 
-The models illustrate why unpowered ground-landings involve higher touchdown speeds than unconstrained landings, which can achieve zero speed. Birds landing on the ground must therefore either use flapping wings, or a leg, or a combination of the two to brake to zero speed. This sets a minimum structural requirement on the forelimb and hindlimb skeletomuscular structures to be capable of absorbing the residual kinetic energy.
+The models illustrate why unpowered ground-landings involve higher touchdown speeds than unconstrained landings, which can achieve zero speed. Birds landing on the ground must therefore either use flapping wings, a leg, or a combination of the two to brake to zero speed. This sets a minimum structural requirement on the forelimb and hindlimb skeletomuscular structures to be capable of absorbing the residual kinetic energy.
 
 This requirement could have shaped the evolution of avian morphology by setting a minimum requirement on the amount of hind-limb skeletomuscular mass @heersWingsLegsAvian2015 @shinFastGroundtoairTransition2024. Reducing the touchdown speed reduces the required hindlimb mass and would lead to improved flight performance @kullbergImpairedPredatorEvasion1997 @mardenMaximumLiftProduction1987.
 
