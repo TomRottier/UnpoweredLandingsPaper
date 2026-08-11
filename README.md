@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/1146073687.svg)](https://doi.org/10.5281/zenodo.21876268)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20428659.svg)](https://doi.org/10.5281/zenodo.20428659)
 
 # Flight dynamics and optimal control of unpowered avian landings
 
