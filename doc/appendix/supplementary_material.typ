@@ -8,7 +8,7 @@
   Flight dynamics and optimal control of unpowered avian landings: Supplementary Material])
 
 #align(center, text(13pt)[
-  Tom Rottier\*, Phillipe Lavoie, Ben Parslew
+  Tom Rottier\*, Philippe Lavoie, Ben Parslew
 ])
 
 
