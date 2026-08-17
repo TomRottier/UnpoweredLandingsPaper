@@ -38,8 +38,8 @@ function solve_ocp(ocp; method=:adnlp, solver=:ipopt, disc_method=:midpoint, ini
     retry_count = 0
     while retry_count < 20
         try
-            sol = solve(ocp, :direct, method, solver; disc_method, grid_size=25, display=false, init)
-            sol = solve(ocp, :direct, method, solver; disc_method, grid_size, display, init=sol)
+            sol = solve(ocp, :collocation, method, solver, :cpu; disc_method, grid_size=25, display=false, init)
+            sol = solve(ocp, :collocation, method, solver, :cpu; disc_method, grid_size, display, init=sol)
             return DirectCollocationSolution(sol)
 
         catch e

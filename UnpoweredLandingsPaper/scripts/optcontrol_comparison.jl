@@ -5,18 +5,18 @@ using ForwardDiff: derivative, gradient
 
 struct OptControlAug <: Control end
 
-function PointMass.alpha(x, p::Parameters{<:Aerodynamics, <:OptControlAug}, t)
+function PointMass.alpha(x, p::Parameters{<:Aerodynamics,<:OptControlAug}, t)
     ν, γ, _, _, p₁, p₂ = x
     f(α, p) = derivative(α -> (1 + p₁) * (-CD(α, p) * ν^2 - sin(γ)) + p₂ * (CL(α, p) * ν - cos(γ) / ν), α)
-    prob = IntervalNonlinearProblem(f, eltype(x)[0.001, π / 2 + 0.001], p)
+    prob = IntervalNonlinearProblem(f, eltype(x)[0.001, π/2+0.001], p)
     return solve(prob, ITP()).u
 end
-PointMass.thrust(x, p::Parameters{<:Aerodynamics, <:OptControlAug}, t) = 0.0
-PointMass.thrust_angle(x, p::Parameters{<:Aerodynamics, <:OptControlAug}, t) = 0.0
+PointMass.thrust(x, p::Parameters{<:Aerodynamics,<:OptControlAug}, t) = 0.0
+PointMass.thrust_angle(x, p::Parameters{<:Aerodynamics,<:OptControlAug}, t) = 0.0
 
 H(x, p, t) = (1 + x[5]) * ν̇(x, p, t) + x[6] * γ̇(x, p, t)
 
-function full_dynamics!(dx, x, p::Parameters{<:Aerodynamics, OptControlAug}, t)
+function full_dynamics!(dx, x, p::Parameters{<:Aerodynamics,OptControlAug}, t)
     ∇x = gradient(x -> H(x, p, t), x)
     dx[1] = ∇x[5]
     dx[2] = ∇x[6]
@@ -40,13 +40,13 @@ function optcontrol_comparison()
     u₁ = [νtd, γtd, 0.0, 0.0, 0.0, 0.0] # ν, γ, χ, ζ, p₁, p₂
 
     ## solve augmented system backwards as IVP from touchdown
-    sol_aug = simulate(full_dynamics!, u₁, p1, tspan; callback = cb)
+    sol_aug = simulate(full_dynamics!, u₁, p1, tspan; callback=cb)
 
     ## solve original system backwards as IVP from touchdown solving
-    sol_org = simulate(PointMass.full_dynamics!, u₁, p2, tspan; callback = cb)
+    sol_org = simulate(PointMass.full_dynamics!, u₁, p2, tspan; callback=cb)
 
     ## solve with direct collocation
-    sol_drc = solve_ocp(dc_min_speed_unconstrained(sol_org.u[1], pa); solver = :madnlp, grid_size = 200, display = false)
+    sol_drc = solve_ocp(dc_min_speed_unconstrained(sol_org.u[1], pa); solver=:madnlp, grid_size=200, display=false)
 
     # plot
     f = Figure()
@@ -82,12 +82,12 @@ function optcontrol_comparison()
 
     plot(
         f[1, 1], S.GridLayout(
-            (1, 1) => ax1,
-            (1, 2) => S.GridLayout([ax2a, ax2b, ax2c]),
-        )
+        (1, 1) => ax1,
+        (1, 2) => S.GridLayout([ax2a, ax2b, ax2c]),
+    )
     )
 
-    Legend(f[2, 1], f.content[1]; orientation = :horizontal)
+    Legend(f[2, 1], f.content[1]; orientation=:horizontal)
 
     return f
 end

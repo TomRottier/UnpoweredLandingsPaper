@@ -2,8 +2,8 @@ module UnpoweredLandingsPaper
 
 using CairoMakie, PointMass, OrdinaryDiffEqTsit5, NonlinearSolve, DelimitedFiles, Folds
 using QuadGK: quadgk
-using OptimalControl: OptimalControl, @def, solve, time_grid, state, control, variable, objective, CTModels.success
-using NLPModelsIpopt, MadNLP, MadNLPMumps
+using OptimalControl: OptimalControl, CTModels, ExaModels, @def, solve, time_grid, state, control, variable, objective
+using NLPModelsIpopt, MadNLP
 using LinearAlgebra: ⋅, dot
 using CairoMakie.GeometryBasics: Polygon
 import CairoMakie.Makie.SpecApi as S
