@@ -1,2 +1,2 @@
-doc/* -linguist-documentation
-doc/*.bib linguist-documentation
+doc/** -linguist-documentation
+doc/**/*.bib linguist-documentation
